@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "569269214040",
+    "project_id": "my-application---eytan",
+    "storage_bucket": "my-application---eytan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569269214040:android:c96e58314f238699c2e32d",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2qCQq0oCRYfvng1a_kU7Fa41ZviwqSuk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
