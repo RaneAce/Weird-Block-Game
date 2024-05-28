@@ -25,15 +25,13 @@ public abstract class Figure {
                 this.y < ScreenHeight);
     }
 
-    public void Movement(int speed, Block block){}
-    public boolean circle_check(){
-        return(this)
-    }
-    public Boolean collision_1st_check (Block Block, Figure other){
-        return (Block.getX() + Block.getBitmap().getWidth() >= other.getX() &&
-                Block.getX() <= other.getX() + other.getBitmap().getWidth() &&
-                Block.getY() + Block.getBitmap().getHeight() >= other.getY() &&
-                Block.getY() <= other.getY() + other.getBitmap().getHeight());
+    public void Movement_triangle(int speed, Block block){}
+    public void Movement_circle(int speed, Block block){}
+    public Boolean collision_1st_check (Figure other){
+        return (this.x + this.bitmap.getWidth() >= other.getX() &&
+                this.x <= other.getX() + other.getBitmap().getWidth() &&
+                this.y + this.bitmap.getHeight() >= other.getY() &&
+                this.y <= other.getY() + other.getBitmap().getHeight());
     }
     public void Draw (Canvas canvas){
         canvas.drawBitmap(bitmap, x, y,null);
@@ -61,5 +59,9 @@ public abstract class Figure {
 
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

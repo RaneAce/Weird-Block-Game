@@ -7,10 +7,52 @@
     android:orientation="vertical"
     tools:context=".Activities.Screen">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6.5" />
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:text="00:00" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3.39" />
+
+        <Button
+            android:id="@+id/pause"
+            android:layout_width="50dp"
+            android:layout_height="65dp"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:onClick="PauseResume"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
+
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height='0dp'
+        android:layout_weight="10">
     </FrameLayout>
 
 </LinearLayout>

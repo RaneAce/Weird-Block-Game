@@ -12,7 +12,10 @@ public class triangle extends Figure {
         this.direction = direction;
     }
 
-    public void Movement(int speed,Block block){
+    public void Movement_triangle(int speed,Block block){
+        if(speed > 10){
+            speed = 10;
+        }
         if(this.direction.equals("right")){
             setX(getX()+speed);
         }

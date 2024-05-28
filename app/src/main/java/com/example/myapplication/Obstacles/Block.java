@@ -32,10 +32,10 @@ public class Block extends Figure {
     }
 
     public boolean inRange(float eventX, float eventY){
-        if(eventX >= x &&
-                eventX <= x + bitmap.getWidth() &&
-                eventY >= y &&
-                eventY <= y + bitmap.getHeight()){
+        if(eventX >= this.x &&
+                eventX <= this.x + this.bitmap.getWidth() &&
+                eventY >= this.y &&
+                eventY <= this.y + this.bitmap.getHeight()){
             return true;
         }
         return false;
