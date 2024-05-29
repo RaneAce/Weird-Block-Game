@@ -8,6 +8,7 @@ public class User {
             this.uid = uid;
             this.username = username;
     }
+    public User(){}
 
     public String getUid() {
         return uid;

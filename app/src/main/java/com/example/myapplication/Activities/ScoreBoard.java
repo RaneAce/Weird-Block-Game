@@ -1,6 +1,5 @@
 package com.example.myapplication.Activities;
 
-import static com.example.myapplication.Database.FBref.refHighScore;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ public class ScoreBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_board);
 
-        //refHighScore.child("1stScorer").setValue(score);
 
     }
 

@@ -39,7 +39,7 @@
             android:layout_height="65dp"
             android:layout_weight="0.3"
             android:gravity="center"
-            android:onClick="PauseResume"/>
+            android:onClick="PauseResume" />
 
         <Space
             android:layout_width="0dp"

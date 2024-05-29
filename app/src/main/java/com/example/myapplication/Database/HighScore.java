@@ -12,6 +12,7 @@ public class HighScore {
         this.uid = uid;
         this.username = username;
     }
+    public HighScore(){}
 
     public int getScore() {
         return score;

@@ -17,10 +17,9 @@ import com.example.myapplication.Obstacles.ObsList;
 import com.example.myapplication.R;
 
 public class Game extends SurfaceView implements Runnable {
-        //Random Random = new Random();
         private int width;
         private int height;
-        private int speed = 5 + (counter/9);
+        private int speed;
         private Canvas canvas;
         private Thread thread;
         private boolean isRunning = true;
@@ -59,7 +58,7 @@ public class Game extends SurfaceView implements Runnable {
         
         public void drawCanvas() {
             if (holder.getSurface().isValid()) {
-                speed = 5 + (counter/9);
+                speed = 3 + (counter/9);
                 canvas = holder.lockCanvas(); // canvas lock + create
                 canvas.drawPaint(bgPaint); // paint bg
                 // drawing objects
