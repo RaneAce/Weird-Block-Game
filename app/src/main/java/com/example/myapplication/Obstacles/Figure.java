@@ -1,21 +1,19 @@
 package com.example.myapplication.Obstacles;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
 public abstract class Figure {
     public float x;
     public float y;
     public Bitmap bitmap;
-    public String type;
+    public String state;
 
-    public Figure(float x, float y, Bitmap bitmap, String type){
+    public Figure(float x, float y, Bitmap bitmap, String state){
         this.x = x;
         this.y = y;
         this.bitmap = bitmap;
-        this.type = type;
+        this.state = state;
     }
 
     public boolean is_inside_screen(int ScreenWidth, int ScreenHeight){
@@ -57,11 +55,11 @@ public abstract class Figure {
         return bitmap;
     }
 
-    public String getType() {
-        return type;
+    public String getState() {
+        return state;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setState(String state) {
+        this.state = state;
     }
 }

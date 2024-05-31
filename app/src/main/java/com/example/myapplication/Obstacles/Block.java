@@ -7,8 +7,8 @@ public class Block extends Figure {
     private int xmin;
     private int ymax;
     private int ymin;
-    public Block(int x, int y, Bitmap bitmap, String type, int xmax, int xmin, int ymax, int ymin){
-        super(x, y, bitmap,type);
+    public Block(int x, int y, Bitmap bitmap, String state, int xmax, int xmin, int ymax, int ymin){
+        super(x, y, bitmap,state);
         this.xmax = xmax;
         this.xmin = xmin;
         this.ymax = ymax;

@@ -7,14 +7,14 @@ import java.util.Random;
 public class triangle extends Figure {
     Random Random = new Random();
     private String direction;
-    public triangle(float x, float y, Bitmap bitmap, String type, String direction){
-        super(x, y, bitmap, type);
+    public triangle(float x, float y, Bitmap bitmap, String state, String direction){
+        super(x, y, bitmap, state);
         this.direction = direction;
     }
 
     public void Movement_triangle(int speed,Block block){
-        if(speed > 10){
-            speed = 10;
+        if(speed > 12){
+            speed = 12;
         }
         if(this.direction.equals("right")){
             setX(getX()+speed);

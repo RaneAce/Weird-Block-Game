@@ -17,9 +17,7 @@ import com.example.myapplication.Obstacles.ObsList;
 import com.example.myapplication.R;
 
 public class Game extends SurfaceView implements Runnable {
-        private int width;
-        private int height;
-        private int speed;
+        private int width, height, speed;
         private Canvas canvas;
         private Thread thread;
         private boolean isRunning = true;
@@ -43,11 +41,10 @@ public class Game extends SurfaceView implements Runnable {
             imgBlock = BitmapFactory.decodeResource(getResources(), R.drawable.square);
             imgtriangle = BitmapFactory.decodeResource(getResources(), R.drawable.triangle);
             imgcircle = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
-            //imgBlock = Bitmap.createScaledBitmap(imgBlock,imgBlock.getWidth()/2,imgBlock.getHeight()/2,false);
             //creating objects
-            block = new Block(width / 2 - imgBlock.getWidth() / 2, height / 2 - imgBlock.getHeight() / 2, imgBlock,"block",width, 0, height, 0);
+            block = new Block(width / 2 - imgBlock.getWidth() / 2, height / 2 - imgBlock.getHeight() / 2, imgBlock,"alive",width, 0, height, 0);
             triangle_List.triangle_loading(imgtriangle, width, height, 3);
-            circle_List.cirlce_Loading(imgcircle,width,height,3);
+            circle_List.circle_Loading(imgcircle,width,height,2);
             //painting background
             bgPaint = new Paint();
             bgPaint.setColor(Color.WHITE);
@@ -58,7 +55,7 @@ public class Game extends SurfaceView implements Runnable {
         
         public void drawCanvas() {
             if (holder.getSurface().isValid()) {
-                speed = 3 + (counter/9);
+                speed = 3 + (counter/19);
                 canvas = holder.lockCanvas(); // canvas lock + create
                 canvas.drawPaint(bgPaint); // paint bg
                 // drawing objects
@@ -83,33 +80,33 @@ public class Game extends SurfaceView implements Runnable {
                     //collision check here <------------
                     //moving objects
                     circle_List.getList().get(i).Movement_circle(speed, block);
-                    //inside screen check and circles colliding
+                    //inside screen and circles colliding check
                         for (int h = 0; h < circle_List.getList().size(); h++) {
                             if (i != h && circle_List.getList().get(i).collision_1st_check(circle_List.getList().get(h))){
-                                circle_List.getList().get(i).setType("dead");
-                                circle_List.getList().get(h).setType("dead");
+                                circle_List.getList().get(i).setState("dead");
+                                circle_List.getList().get(h).setState("dead");
                             }
                         }
                     if(circle_List.getList().get(i).is_inside_screen(width, height) &&
-                    !circle_List.getList().get(i).getType().equals("dead")){
+                    !circle_List.getList().get(i).getState().equals("dead")){
                         c_TempList.getList().add(circle_List.getList().get(i));
                     }
                     else{
-                        c_TempList.cirlce_Loading(imgcircle,width,height,1);
+                        c_TempList.circle_Loading(imgcircle,width,height,1);
                     }
                 }
                 holder.unlockCanvasAndPost(canvas); // unlock canvas after paint
                 triangle_List.getList().clear();
                 circle_List.getList().clear();
                 //adding objects compared to timer
-                if(counter % 10 == 9){
+                if(counter % 20 == 19){
                     t_TempList.triangle_loading(imgtriangle,width,height,1);
-                    c_TempList.cirlce_Loading(imgcircle,width,height,1);
+                    c_TempList.circle_Loading(imgcircle,width,height,1);
                 }
-                if(c_TempList.getList().size() > 2 + counter/9 || c_TempList.getList().size() > 3){
+                if(c_TempList.getList().size() > 2 + counter/19 || c_TempList.getList().size() > 4){
                     c_TempList.getList().remove(c_TempList.getList().size()-1);
                 }
-                if(t_TempList.getList().size() > 3 + counter/9 || t_TempList.getList().size() > 6){
+                if(t_TempList.getList().size() > 3 + counter/19 || t_TempList.getList().size() > 7){
                     t_TempList.getList().remove(t_TempList.getList().size()-1);
                 }
                 for(int j = 0; j < t_TempList.getList().size(); j++){

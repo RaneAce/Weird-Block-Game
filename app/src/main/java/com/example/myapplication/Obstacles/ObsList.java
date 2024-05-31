@@ -18,7 +18,7 @@ public class ObsList {
         return List;
     }
 
-    public void cirlce_Loading(Bitmap imgcircle, int Screenwidth, int Screenheight, int loadCount) {
+    public void circle_Loading(Bitmap imgcircle, int Screenwidth, int Screenheight, int loadCount) {
         for (int h = 0; h < loadCount; h++) {
             int randheight;
             int location;
@@ -30,7 +30,7 @@ public class ObsList {
                 else {
                     randheight = -imgcircle.getHeight() + random.nextInt(Screenheight + imgcircle.getHeight()) + 1;
                 }
-                circle Obsta = new circle(location, randheight , imgcircle, "circle");
+                circle Obsta = new circle(location, randheight , imgcircle, "alive");
                 this.List.add(Obsta);
         }
     }
@@ -51,7 +51,7 @@ public class ObsList {
                 direction = "left";
                 location = Screenwidth - 1;
             }
-            triangle Obsta = new triangle(location, randheight, imgtriangle, "triangle", direction);
+            triangle Obsta = new triangle(location, randheight, imgtriangle, "alive", direction);
             this.List.add(Obsta);
         }
     }

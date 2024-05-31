@@ -8,14 +8,14 @@ public class circle extends Figure {
     Random Random = new Random();
     int frame_count = 0;
     float k, l;
-    public circle(float x, float y, Bitmap bitmap, String type) {
-        super(x, y, bitmap, type);
+    public circle(float x, float y, Bitmap bitmap, String state) {
+        super(x, y, bitmap, state);
     }
 
     public void Movement_circle(int speed, Block block) {
 
-        if(speed > 8){
-            speed = 8;
+        if(speed > 10){
+            speed = 10;
         }
 
        float x = (block.getX()-this.x)/-(Math.abs(block.getX()-this.x))*(-1)*speed;
