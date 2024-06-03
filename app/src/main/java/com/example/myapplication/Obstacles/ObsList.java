@@ -35,24 +35,33 @@ public class ObsList {
         }
     }
 
-    public void triangle_loading(Bitmap imgtriangle, int Screenwidth, int Screenheight, int loadCount){
+    public void triangle_loading(ArrayList<Bitmap> triangle_bitmap_list, int Screenwidth, int Screenheight, int loadCount){
         for(int i = 0; i < loadCount; i++) {
             int location;
-            int randheight = random.nextInt(Screenheight - imgtriangle.getHeight() + 1);
+            int randheight = random.nextInt(Screenheight - triangle_bitmap_list.get(0).getHeight() + 1);
             int randdirection = random.nextInt(2);
             String direction;
             // right
             if (randdirection == 0) {
                 direction = "right";
-                location = -imgtriangle.getWidth() + 1;
+                location = -triangle_bitmap_list.get(1).getWidth() + 1;
+                triangle Obsta = new triangle(location, randheight, triangle_bitmap_list.get(1), "alive", direction);
+                this.List.add(Obsta);
             }
             // left
             else {
+                int secret_roll = 1 + random.nextInt(100);
                 direction = "left";
                 location = Screenwidth - 1;
+                if(secret_roll == 69){
+                    triangle Obsta = new triangle(location, randheight, triangle_bitmap_list.get(2), "alive", direction);
+                    this.List.add(Obsta);
+                }
+                else {
+                    triangle Obsta = new triangle(location, randheight, triangle_bitmap_list.get(0), "alive", direction);
+                    this.List.add(Obsta);
+                }
             }
-            triangle Obsta = new triangle(location, randheight, imgtriangle, "alive", direction);
-            this.List.add(Obsta);
         }
     }
 }

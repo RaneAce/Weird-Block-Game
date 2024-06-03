@@ -16,6 +16,8 @@ import com.example.myapplication.Obstacles.Block;
 import com.example.myapplication.Obstacles.ObsList;
 import com.example.myapplication.R;
 
+import java.util.ArrayList;
+
 public class Game extends SurfaceView implements Runnable {
         private int width, height, speed;
         private Canvas canvas;
@@ -28,7 +30,8 @@ public class Game extends SurfaceView implements Runnable {
         private ObsList t_TempList = new ObsList();
         private ObsList c_TempList = new ObsList();
         private Paint bgPaint;
-        private Bitmap imgBlock, imgtriangle, imgcircle;
+        private Bitmap imgBlock, imgtriangle_right,imgtriangle_right_secret, imgtriangle_left, imgcircle;
+        private ArrayList<Bitmap> triangle_bitmap_list = new ArrayList<Bitmap>(3);
         private float x = 0, y = 0, dx = 0, dy = 0;
         private boolean is_holding = false;
 
@@ -39,11 +42,16 @@ public class Game extends SurfaceView implements Runnable {
             holder = getHolder(); //getting surface
             //image creating with drawables
             imgBlock = BitmapFactory.decodeResource(getResources(), R.drawable.square);
-            imgtriangle = BitmapFactory.decodeResource(getResources(), R.drawable.triangle);
+            imgtriangle_right = BitmapFactory.decodeResource(getResources(), R.drawable.triangle_right);
+            imgtriangle_left = BitmapFactory.decodeResource(getResources(), R.drawable.triangle_left);
+            imgtriangle_right_secret = BitmapFactory.decodeResource(getResources(), R.drawable.triangle_right_secret);
+            triangle_bitmap_list.add(imgtriangle_right);
+            triangle_bitmap_list.add(imgtriangle_left);
+            triangle_bitmap_list.add(imgtriangle_right_secret);
             imgcircle = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
             //creating objects
             block = new Block(width / 2 - imgBlock.getWidth() / 2, height / 2 - imgBlock.getHeight() / 2, imgBlock,"alive",width, 0, height, 0);
-            triangle_List.triangle_loading(imgtriangle, width, height, 3);
+            triangle_List.triangle_loading(triangle_bitmap_list, width, height, 3);
             circle_List.circle_Loading(imgcircle,width,height,2);
             //painting background
             bgPaint = new Paint();
@@ -71,7 +79,7 @@ public class Game extends SurfaceView implements Runnable {
                         t_TempList.getList().add(triangle_List.getList().get(i));
                     }
                     else{
-                        t_TempList.triangle_loading(imgtriangle, width, height, 1);
+                        t_TempList.triangle_loading(triangle_bitmap_list, width, height, 1);
                     }
                 }
                 //circles
@@ -100,7 +108,7 @@ public class Game extends SurfaceView implements Runnable {
                 circle_List.getList().clear();
                 //adding objects compared to timer
                 if(counter % 20 == 19){
-                    t_TempList.triangle_loading(imgtriangle,width,height,1);
+                    t_TempList.triangle_loading(triangle_bitmap_list,width,height,1);
                     c_TempList.circle_Loading(imgcircle,width,height,1);
                 }
                 if(c_TempList.getList().size() > 2 + counter/19 || c_TempList.getList().size() > 4){

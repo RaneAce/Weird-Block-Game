@@ -28,7 +28,6 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         layout = findViewById(R.id.ConstraintLayout);
-
         Screen = findViewById(R.id.Screen);
         Settings = findViewById(R.id.Settings);
         Shop = findViewById(R.id.Shop);
