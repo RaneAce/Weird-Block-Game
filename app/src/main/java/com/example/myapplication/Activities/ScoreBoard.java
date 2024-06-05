@@ -1,11 +1,17 @@
 package com.example.myapplication.Activities;
 
 
+import static com.example.myapplication.Database.FBref.refHighScore;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.myapplication.Database.HighScore;
 import com.example.myapplication.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class ScoreBoard extends AppCompatActivity {
@@ -16,6 +22,7 @@ public class ScoreBoard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_board);
+
 
 
     }

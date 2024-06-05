@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "569269214040",
-    "project_id": "my-application---eytan",
-    "storage_bucket": "my-application---eytan.appspot.com"
+    "project_number": "421489826335",
+    "firebase_url": "https://weird-block-game-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "weird-block-game",
+    "storage_bucket": "weird-block-game.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:569269214040:android:c96e58314f238699c2e32d",
+        "mobilesdk_app_id": "1:421489826335:android:b5cb99c7269daa245b132a",
         "android_client_info": {
           "package_name": "com.example.myapplication"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD2qCQq0oCRYfvng1a_kU7Fa41ZviwqSuk"
+          "current_key": "AIzaSyDsHT88AYNdiR-mEztwNXMU9g4Xxj7sSxw"
         }
       ],
       "services": {
