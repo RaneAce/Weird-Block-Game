@@ -2,12 +2,9 @@ package com.example.myapplication.Obstacles;
 
 import android.graphics.Bitmap;
 
-import java.util.Random;
-
 public class circle extends Figure {
-    Random Random = new Random();
-    int frame_count = 0;
-    float k, l;
+    private int frame_count = 0;
+    private float k, l;
     public circle(float x, float y, Bitmap bitmap, String state) {
         super(x, y, bitmap, state);
     }

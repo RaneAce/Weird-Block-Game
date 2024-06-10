@@ -3,6 +3,8 @@ package com.example.myapplication.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -39,8 +41,6 @@ public class Screen extends AppCompatActivity implements Runnable {
         thread.start();
 
     }
-
-
 
     //sends a message with counter and then updates the timer text
     private Handler handler = new Handler() {
@@ -80,6 +80,13 @@ public class Screen extends AppCompatActivity implements Runnable {
                          Thread.sleep(1000);
                          counter++;
                          handler.sendEmptyMessage(0);
+
+                         if(game.collision_happened()){
+                             Intent intent = new Intent(this, com.example.myapplication.Activities.GameOver.class);
+                             startActivity(intent);
+                             result = false;
+                         }
+
                      }
                  } catch (InterruptedException e) {
                      e.printStackTrace();

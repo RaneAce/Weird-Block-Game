@@ -9,7 +9,6 @@ public class ObsList {
     private ArrayList<Figure> List;
     Random random = new Random();
 
-    //creating new list
     public ObsList(){
         this.List = new ArrayList<>();
     }

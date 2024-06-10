@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ConstraintLayout"
+    android:background="@drawable/main_background"
     style="@style/RelativeLayout"
     tools:context=".Activities.Main">
 
@@ -10,38 +11,29 @@
         android:id="@+id/ScoreBoard"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="132dp"
-        android:background="@color/white"
+        android:background="@color/black"
         android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.208"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.281"
         app:srcCompat="@drawable/highscore_button" />
 
     <ImageButton
         android:id="@+id/Settings"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginEnd="44dp"
-        android:background="@color/white"
+        android:background="@color/black"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61"
-        app:srcCompat="@drawable/settings_button" />
-
-    <ImageButton
-        android:id="@+id/Shop"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginBottom="112dp"
-        android:background="@color/white"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/alert_dark_frame" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.698"
+        app:srcCompat="@drawable/settings_button" />
 
     <ImageButton
         android:id="@+id/Screen"
@@ -52,20 +44,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.5"
         app:srcCompat="@drawable/play_button" />
 
     <ImageButton
         android:id="@+id/HelpButton"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:background="@color/white"
+        android:background="@color/black"
         android:onClick="help_click"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintHorizontal_bias="0.187"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.020"
+        app:layout_constraintVertical_bias="0.779"
         app:srcCompat="@drawable/help_button" />
 
 

@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 public abstract class Figure {
-    public float x;
+    public float x; 
     public float y;
     public Bitmap bitmap;
     public String state;
@@ -23,9 +23,9 @@ public abstract class Figure {
                 this.y < ScreenHeight);
     }
 
-    public void Movement_triangle(int speed, Block block){}
+    public void Movement_triangle(int speed){}
     public void Movement_circle(int speed, Block block){}
-    public Boolean collision_1st_check (Figure other){
+    public Boolean collision_check(Figure other){
         return (this.x + this.bitmap.getWidth() >= other.getX() &&
                 this.x <= other.getX() + other.getBitmap().getWidth() &&
                 this.y + this.bitmap.getHeight() >= other.getY() &&

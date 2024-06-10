@@ -3,6 +3,7 @@ package com.example.myapplication.Activities;
 import static com.example.myapplication.Activities.Screen.counter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -23,6 +24,7 @@ public class Game extends SurfaceView implements Runnable {
         private Canvas canvas;
         private Thread thread;
         private boolean isRunning = true;
+        private boolean did_collide = false;
         private SurfaceHolder holder;
         private Block block;
         private ObsList triangle_List = new ObsList();
@@ -50,7 +52,7 @@ public class Game extends SurfaceView implements Runnable {
             triangle_bitmap_list.add(imgtriangle_right_secret);
             imgcircle = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
             //creating objects
-            block = new Block(width / 2 - imgBlock.getWidth() / 2, height / 2 - imgBlock.getHeight() / 2, imgBlock,"alive",width, 0, height, 0);
+            block = new Block(width / 2 - imgBlock.getWidth() / 2, height / 2 - imgBlock.getHeight() / 2, imgBlock,"alive", width, 0, height, 0);
             triangle_List.triangle_loading(triangle_bitmap_list, width, height, 3);
             circle_List.circle_Loading(imgcircle,width,height,2);
             //painting background
@@ -60,7 +62,7 @@ public class Game extends SurfaceView implements Runnable {
             thread = new Thread(this);
             thread.start();
         }
-        
+
         public void drawCanvas() {
             if (holder.getSurface().isValid()) {
                 speed = 3 + (counter/19);
@@ -71,9 +73,12 @@ public class Game extends SurfaceView implements Runnable {
                 //triangles
                 for(int i = 0; i < triangle_List.getList().size(); i++){
                     triangle_List.getList().get(i).Draw(canvas);
-                    //collision check here <------------
+                    //collision check
+                    if(block.collision_check(triangle_List.getList().get(i))){
+                        did_collide = true;
+                    }
                     //moving objects
-                    triangle_List.getList().get(i).Movement_triangle(speed, block);
+                    triangle_List.getList().get(i).Movement_triangle(speed);
                     //inside screen check
                     if(triangle_List.getList().get(i).is_inside_screen(width,height)){
                         t_TempList.getList().add(triangle_List.getList().get(i));
@@ -85,12 +90,15 @@ public class Game extends SurfaceView implements Runnable {
                 //circles
                 for(int i = 0; i < circle_List.getList().size(); i++){
                     circle_List.getList().get(i).Draw(canvas);
-                    //collision check here <------------
+                    //collision check
+                    if(block.collision_check(circle_List.getList().get(i))){
+                        did_collide = true;
+                    }
                     //moving objects
                     circle_List.getList().get(i).Movement_circle(speed, block);
                     //inside screen and circles colliding check
                         for (int h = 0; h < circle_List.getList().size(); h++) {
-                            if (i != h && circle_List.getList().get(i).collision_1st_check(circle_List.getList().get(h))){
+                            if (i != h && circle_List.getList().get(i).collision_check(circle_List.getList().get(h))){
                                 circle_List.getList().get(i).setState("dead");
                                 circle_List.getList().get(h).setState("dead");
                             }
@@ -166,9 +174,12 @@ public class Game extends SurfaceView implements Runnable {
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 is_holding = false;
             }
-            System.out.println(is_holding);
             return true;
         }
+
+    public Boolean collision_happened(){
+        return did_collide;
+    }
 
     public boolean pauseResume() {
         isRunning = !isRunning;
@@ -181,7 +192,7 @@ public class Game extends SurfaceView implements Runnable {
 
         @Override
         public void run() {
-            while(isRunning){
+            while(isRunning && !did_collide){
                 drawCanvas();
                 }
         }

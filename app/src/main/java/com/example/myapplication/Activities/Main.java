@@ -18,7 +18,7 @@ import com.example.myapplication.R;
 
 public class Main extends AppCompatActivity {
 
-    ImageButton Settings, Shop, ScoreBoard, Screen;
+    ImageButton Settings, ScoreBoard, Screen;
 
     ConstraintLayout layout;
 
@@ -30,7 +30,6 @@ public class Main extends AppCompatActivity {
         layout = findViewById(R.id.ConstraintLayout);
         Screen = findViewById(R.id.Screen);
         Settings = findViewById(R.id.Settings);
-        Shop = findViewById(R.id.Shop);
         ScoreBoard = findViewById(R.id.ScoreBoard);
 
         Screen.setOnClickListener(new View.OnClickListener() {
@@ -44,13 +43,6 @@ public class Main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                  openSettings();
-            }
-        });
-
-        Shop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openShop();
             }
         });
 
@@ -72,11 +64,6 @@ public class Main extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openShop() {
-        Intent intent = new Intent(this, com.example.myapplication.Activities.Shop.class);
-        startActivity(intent);
-    }
-
     public void openScoreBoard() {
         Intent intent = new Intent(this, com.example.myapplication.Activities.ScoreBoard.class);
         startActivity(intent);
@@ -86,7 +73,7 @@ public class Main extends AppCompatActivity {
         CreatepopUpwindow();
     }
 
-    public void CreatepopUpwindow (){
+    public void CreatepopUpwindow() {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 
         View popUpView = inflater.inflate(R.layout.help_popup,null);
@@ -96,6 +83,7 @@ public class Main extends AppCompatActivity {
 
         PopupWindow popupWindow = new PopupWindow(popUpView,width,height,focusable);
 
+        //post - makes it run on the UI thread
         layout.post(new Runnable() {
             @Override
             public void run() {

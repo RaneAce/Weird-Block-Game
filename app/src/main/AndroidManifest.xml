@@ -13,6 +13,12 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.GameOver"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Main"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Screen"
             android:exported="false" />
         <activity
@@ -22,13 +28,10 @@
             android:name=".Activities.ScoreBoard"
             android:exported="false" />
         <activity
-            android:name=".Activities.Shop"
-            android:exported="false" />
-        <activity
             android:name=".Activities.Settings"
             android:exported="false" />
         <activity
-            android:name=".Activities.Main"
+            android:name=".Activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
