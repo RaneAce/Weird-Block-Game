@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,6 +68,23 @@ public class RegisterActivity extends AppCompatActivity {
         password = editpassword.getText().toString().trim();
         username = editUsername.getText().toString().trim();
 
+        if(email.isEmpty()){
+            editEmail.setError("Email is required!");
+            editEmail.requestFocus();
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            editEmail.setError("Enter a valid Email");
+            editEmail.requestFocus();
+        }
+        if(password.isEmpty()){
+            editpassword.setError("Password is required!");
+            editpassword.requestFocus();
+        }
+        if(password.length() > 6){
+            editpassword.setError("password too short!");
+            editpassword.requestFocus();
+        }
+
         refAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -76,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Log.d("MainActivity", "createUserWithEmail:success");
                     uid = user.getUid();
                     dbuser = new User(uid, username);
-                    dbuser_score = new HighScore(0,date,uid,username);
+                    dbuser_score = new HighScore(0, date, uid, username);
                     refUser.child(uid).setValue(dbuser);
                     refHighScore.child(uid).setValue(dbuser_score);
                     Toast.makeText(RegisterActivity.this, "Successful registration", Toast.LENGTH_LONG).show();

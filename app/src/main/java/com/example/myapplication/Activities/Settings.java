@@ -29,10 +29,10 @@ public class Settings extends AppCompatActivity {
         uid_text = (TextView) findViewById(R.id.uid_text);
 
         uid = User.getUid();
-        logout.setText(uid);
+        uid_text.setText(uid);
     }
 
-    private void logout (View v){
+    public void logout(View view){
         refAuth.signOut();
         Intent intent = new Intent(Settings.this,com.example.myapplication.Activities.LoginActivity.class);
         startActivity(intent);

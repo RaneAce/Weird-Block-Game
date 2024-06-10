@@ -5,11 +5,13 @@ import static com.example.myapplication.Database.FBref.refAuth;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
@@ -57,5 +59,10 @@ public class ForgotPassword extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void go_back(View v){
+        Intent intent = new Intent(ForgotPassword.this,com.example.myapplication.Activities.LoginActivity.class);
+        startActivity(intent);
     }
 }

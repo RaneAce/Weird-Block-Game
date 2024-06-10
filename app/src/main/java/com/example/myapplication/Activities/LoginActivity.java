@@ -34,8 +34,8 @@ public class LoginActivity extends AppCompatActivity {
 
         initViews();
 
-        Intent intent = new Intent(this, com.example.myapplication.Activities.Main.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(this, com.example.myapplication.Activities.Main.class);
+        startActivity(intent);*/
     }
 
     private void initViews() {
@@ -78,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else{
+                        user.sendEmailVerification();
                         Toast.makeText(LoginActivity.this, "Check Email to verify your account", Toast.LENGTH_LONG).show();
                     }
                 }
