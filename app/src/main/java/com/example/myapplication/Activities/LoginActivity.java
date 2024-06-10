@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private void initViews() {
         eEmail = (EditText) findViewById(R.id.eEmail);
         ePassword = (EditText) findViewById(R.id.ePassword);
-        register = (TextView) findViewById(R.id.register_button);
+        register = (TextView) findViewById(R.id.register_text);
         forgot_passowrd = (TextView) findViewById(R.id.forgot_password);
     }
 
@@ -84,15 +84,20 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(LoginActivity.this,"Failed to login! Please check your credentials", Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
 
     }
 
-    public void register(){
-
+    public void register_go_to(View view){
+        Intent intent = new Intent(LoginActivity.this, com.example.myapplication.Activities.RegisterActivity.class);
+        startActivity(intent);
     }
+
+    public void forgotpassword(View view){
+        Intent intent = new Intent(LoginActivity.this,com.example.myapplication.Activities.ForgotPassword.class);
+        startActivity(intent);
+    }
+
 
 }

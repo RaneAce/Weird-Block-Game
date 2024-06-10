@@ -29,6 +29,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textSize="15sp"
             android:text="Welcome! Enter E-mail and Password to continue" />
 
         <Space
@@ -83,6 +84,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_gravity="center_vertical"
+                android:onClick="forgotpassword"
                 android:text="Forgot Passowrd?" />
 
             <Space
@@ -91,13 +93,13 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/register_button"
+                android:id="@+id/register_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_gravity="center_vertical"
-                android:onClick="register"
+                android:onClick="register_go_to"
                 android:text="Register" />
 
         </LinearLayout>
