@@ -21,7 +21,7 @@ public class Screen extends AppCompatActivity implements Runnable {
     public FrameLayout framelayout;
     private Button pause;
     public TextView timer;
-    public static int counter = 0;
+    public static int counter;
     private Thread thread;
     Game game;
     private boolean result = true;
@@ -39,6 +39,8 @@ public class Screen extends AppCompatActivity implements Runnable {
         //thread starting
         thread = new Thread(this);
         thread.start();
+
+        counter = 0;
 
     }
 
@@ -80,7 +82,6 @@ public class Screen extends AppCompatActivity implements Runnable {
                          Thread.sleep(1000);
                          counter++;
                          handler.sendEmptyMessage(0);
-
                          if(game.collision_happened()){
                              Intent intent = new Intent(this, com.example.myapplication.Activities.GameOver.class);
                              startActivity(intent);
