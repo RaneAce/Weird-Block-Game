@@ -10,7 +10,6 @@ import com.example.myapplication.R;
 
 public class ScoreBoard extends AppCompatActivity {
 
-    HighScore score = new HighScore(10,"02045","ABC","Roy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -52,18 +52,22 @@ public class LoginActivity extends AppCompatActivity {
         if(email.isEmpty()){
             eEmail.setError("Email is required!");
             eEmail.requestFocus();
+            return;
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             eEmail.setError("Enter a valid Email");
             eEmail.requestFocus();
+            return;
         }
         if(password.isEmpty()){
          ePassword.setError("Password is required!");
          ePassword.requestFocus();
+            return;
         }
-        if(password.length() > 6){
+        if(password.length() < 6){
             ePassword.setError("password too short!");
             ePassword.requestFocus();
+            return;
         }
 
         refAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

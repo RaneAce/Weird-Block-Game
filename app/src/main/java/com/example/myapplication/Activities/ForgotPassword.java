@@ -40,10 +40,12 @@ public class ForgotPassword extends AppCompatActivity {
         if(email.isEmpty()){
             editEmail.setError("Email is required!");
             editEmail.requestFocus();
+            return;
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             editEmail.setError("Please provide a valid Email");
             editEmail.requestFocus();
+            return;
         }
 
         refAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
