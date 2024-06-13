@@ -9,12 +9,6 @@ public class FBref {
     public static FirebaseDatabase FBDB = FirebaseDatabase.getInstance();
     public static DatabaseReference refUser = FBDB.getReference("User");
     public static DatabaseReference refHighScore = FBDB.getReference("HighScore");
-    public static String uid;
     public static FirebaseAuth refAuth = FirebaseAuth.getInstance();
 
-    public static void getUser(FirebaseUser fbuser){
-        uid = fbuser.getUid();
-
-
-    }
 }

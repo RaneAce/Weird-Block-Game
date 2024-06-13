@@ -7,18 +7,37 @@
     android:orientation="vertical"
     tools:context=".Activities.ScoreBoard">
 
-  <TextView
-      android:id="@+id/textView2"
+  <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="0.1"
-      android:gravity="center"
-      android:textSize="20sp"
-      android:text="LeaderBoard :)" />
+      android:orientation="horizontal"
+      android:layout_weight="0.1">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="LeaderBoard:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/return_textview"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.3"
+        android:gravity="center|left"
+        android:text="go back"
+        android:textStyle="bold"
+        android:onClick="go_back_to_menu"
+        android:textSize="20sp" />
+  </LinearLayout>
 
   <ListView
       android:layout_width="match_parent"
       android:layout_height="0dp"
+      android:id="@+id/list_view"
       android:layout_weight="1" />
 
 </LinearLayout>

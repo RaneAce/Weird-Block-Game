@@ -90,8 +90,9 @@ public class GameOver extends AppCompatActivity {
         if(counter > dbuser_score.getScore()){
             refHighScore.child(String.valueOf(dbuser_score.getScore())).child(dbuser_score.getDate()).child(dbuser_score.getUid()).removeValue();
             dbuser_score.setScore(counter);
+            dbuser_score.setDate(date);
             refUser.child(dbuser_score.getUid()).setValue(dbuser_score);
-            refHighScore.child(String.valueOf(dbuser_score.getScore())).child(date).child(dbuser_score.getUid()).setValue(dbuser_score.getUsername());
+            refHighScore.child(String.valueOf(dbuser_score.getScore())).child(dbuser_score.getDate()).child(dbuser_score.getUid()).setValue(dbuser_score.getUsername());
             Toast.makeText(GameOver.this,"New Best!", Toast.LENGTH_LONG).show();
         }
         else {
