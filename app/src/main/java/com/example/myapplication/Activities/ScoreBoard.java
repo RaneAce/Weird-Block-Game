@@ -83,9 +83,4 @@ public class ScoreBoard extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onPause(){
-
-        super.onPause();
-    }
-
 }

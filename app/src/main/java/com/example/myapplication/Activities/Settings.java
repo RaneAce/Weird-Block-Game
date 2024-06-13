@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Settings extends AppCompatActivity {
 
-    private Button logout;
     private TextView uid_text;
     private String uid;
     private FirebaseUser User = refAuth.getCurrentUser();
@@ -25,7 +24,6 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        logout = (Button) findViewById(R.id.logout_button);
         uid_text = (TextView) findViewById(R.id.uid_text);
 
         uid = User.getUid();
@@ -35,6 +33,16 @@ public class Settings extends AppCompatActivity {
     public void logout(View view){
         refAuth.signOut();
         Intent intent = new Intent(Settings.this,com.example.myapplication.Activities.LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void return_to_menu(View view){
+        Intent intent = new Intent(Settings.this, com.example.myapplication.Activities.Main.class);
+        startActivity(intent);
+    }
+
+    public void open_credits(View view){
+        Intent intent = new Intent(Settings.this, com.example.myapplication.Activities.Credits.class);
         startActivity(intent);
     }
 

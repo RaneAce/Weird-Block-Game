@@ -39,38 +39,45 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <Button
+        <TextView
             android:id="@+id/logout_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logout"
-            android:textSize="20sp"
+            android:layout_weight="0.6"
             android:onClick="logout"
-            android:layout_weight="0.6"/>
+            android:gravity="center"
+            android:text="Logout"
+            android:textSize="20sp" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <Button
+        <TextView
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
-            android:layout_weight="0.6"/>
+            android:layout_weight="0.6"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:onClick="open_credits"
+            android:text="Credits" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <Button
+        <TextView
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
-            android:layout_weight="0.6"/>
+            android:layout_weight="0.6"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:onClick="return_to_menu"
+            android:text="Return To Menu" />
 
         <Space
             android:layout_width="match_parent"
