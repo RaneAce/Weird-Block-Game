@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.Database.HighScore;
 import com.example.myapplication.Database.User;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,9 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
     public EditText editUsername, editpassword, editEmail;
     private String email, password, username, uid;
     public User dbuser;
-    public HighScore dbuser_score;
     public Date currentDate = new Date();
-    public SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    public SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
     String date = dateFormat.format(currentDate);
 
     @Override
@@ -67,6 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
         email = editEmail.getText().toString().trim();
         password = editpassword.getText().toString().trim();
         username = editUsername.getText().toString().trim();
+
         if(username.isEmpty()){
             editUsername.setError("Username is required!");
             editUsername.requestFocus();
@@ -99,14 +98,15 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful()){
-                    FirebaseUser user = refAuth.getCurrentUser();
                     Log.d("MainActivity", "createUserWithEmail:success");
+                    FirebaseUser user = refAuth.getCurrentUser();
                     uid = user.getUid();
-                    dbuser = new User(uid, username);
-                    dbuser_score = new HighScore(date, 0, uid, username);
+                    dbuser = new User(date,0,uid,username);
                     refUser.child(uid).setValue(dbuser);
-                    refHighScore.child(uid).setValue(dbuser_score);
+                    refHighScore.child(String.valueOf(dbuser.getScore())).child(dbuser.getDate()).child(dbuser.getUid()).setValue(dbuser.getUsername());
                     Toast.makeText(RegisterActivity.this, "Successful registration", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(RegisterActivity.this, com.example.myapplication.Activities.LoginActivity.class);
+                    startActivity(intent);
                 }
                 else{
                     if (task.getException() instanceof FirebaseAuthUserCollisionException)

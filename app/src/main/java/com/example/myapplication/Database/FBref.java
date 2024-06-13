@@ -15,5 +15,6 @@ public class FBref {
     public static void getUser(FirebaseUser fbuser){
         uid = fbuser.getUid();
 
+
     }
 }

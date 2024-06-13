@@ -1,14 +1,35 @@
 package com.example.myapplication.Database;
 
 public class User {
+    private int score;
+    private String date;
     private String uid;
     private String username;
 
-    public User(String uid, String username) {
-            this.uid = uid;
-            this.username = username;
+    public User() {}
+
+    public User(String date, int score, String uid, String username){
+        this.score = score;
+        this.date = date;
+        this.uid = uid;
+        this.username = username;
     }
-    public User(){}
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getUid() {
         return uid;

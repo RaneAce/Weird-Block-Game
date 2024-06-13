@@ -3,6 +3,7 @@ package com.example.myapplication.Activities;
 import static com.example.myapplication.Activities.Screen.counter;
 import static com.example.myapplication.Database.FBref.refAuth;
 import static com.example.myapplication.Database.FBref.refHighScore;
+import static com.example.myapplication.Database.FBref.refUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.Database.HighScore;
+import com.example.myapplication.Database.User;
 import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,16 +25,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class GameOver extends AppCompatActivity {
     public TextView Score_Text;
     public ImageButton Return_Button;
     public FirebaseUser dbuser;
     public Date currentDate = new Date();
-    public SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+    public SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
     public String date = format.format(currentDate);
     public String uid;
-    public HighScore dbuser_score = new HighScore();
+    public User dbuser_score = new User();
 
 
     @Override
@@ -46,19 +48,20 @@ public class GameOver extends AppCompatActivity {
         dbuser = refAuth.getCurrentUser();
         uid = dbuser.getUid();
 
-            refHighScore.addListenerForSingleValueEvent(new ValueEventListener() {
+            refUser.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot ds : snapshot.getChildren()) {
-                        HighScore highScore = ds.getValue(HighScore.class);
-                        if (highScore != null) {
-                                dbuser_score.setScore(highScore.getScore());
-                                dbuser_score.setUsername(highScore.getUsername());
-                                dbuser_score.setDate(date);
-                                dbuser_score.setUid(highScore.getUid());
+                    for (DataSnapshot ds_score : snapshot.getChildren()) {
+                        User user_information = ds_score.getValue(User.class);
+                        if (user_information != null && Objects.equals(user_information.getUid(), uid)) {
+                                dbuser_score.setScore(user_information.getScore());
+                                dbuser_score.setUsername(user_information.getUsername());
+                                dbuser_score.setDate(user_information.getDate());
+                                dbuser_score.setUid(user_information.getUid());
                                 break;
                         } else {
-                            Log.d("Firebase", "HighScore is null for Key: " + ds.getKey());
+                            Log.d("Firebase", "HighScore is null for Key: " + ds_score.getKey());
+                            Log.d("Firebase", "Or UID wasn't right");
                         }
                     }
                     update_player_score();
@@ -85,8 +88,10 @@ public class GameOver extends AppCompatActivity {
 
     public void update_player_score(){
         if(counter > dbuser_score.getScore()){
+            refHighScore.child(String.valueOf(dbuser_score.getScore())).child(dbuser_score.getDate()).child(dbuser_score.getUid()).removeValue();
             dbuser_score.setScore(counter);
-            refHighScore.child(uid).setValue(dbuser_score);
+            refUser.child(dbuser_score.getUid()).setValue(dbuser_score);
+            refHighScore.child(String.valueOf(dbuser_score.getScore())).child(date).child(dbuser_score.getUid()).setValue(dbuser_score.getUsername());
             Toast.makeText(GameOver.this,"New Best!", Toast.LENGTH_LONG).show();
         }
         else {
