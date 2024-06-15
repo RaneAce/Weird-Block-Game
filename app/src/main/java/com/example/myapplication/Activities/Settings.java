@@ -5,6 +5,7 @@ import static com.example.myapplication.Database.FBref.refAuth;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ public class Settings extends AppCompatActivity {
     private TextView uid_text;
     private String uid;
     private FirebaseUser User = refAuth.getCurrentUser();
+    public SharedPreferences user_preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         uid_text = (TextView) findViewById(R.id.uid_text);
+        user_preferences = getSharedPreferences("PREFS_NAME", MODE_PRIVATE);
 
         uid = User.getUid();
         uid_text.setText(uid);
@@ -32,6 +35,10 @@ public class Settings extends AppCompatActivity {
 
     public void logout(View view){
         refAuth.signOut();
+        user_preferences = getSharedPreferences("PREFS_NAME", MODE_PRIVATE);
+        SharedPreferences.Editor editor = user_preferences.edit();
+        editor.putBoolean("stayConnected",false);
+        editor.commit();
         Intent intent = new Intent(Settings.this,com.example.myapplication.Activities.LoginActivity.class);
         startActivity(intent);
     }

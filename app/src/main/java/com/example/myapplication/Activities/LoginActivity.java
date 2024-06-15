@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText eEmail, ePassword;
     private TextView register, forgot_passowrd;
     private Button login_button;
+    public SharedPreferences user_preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         initViews();
-
+        user_preferences = getSharedPreferences("PREFS_NAME", MODE_PRIVATE);
     }
 
     private void initViews() {
@@ -75,6 +77,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(task.isSuccessful()){
                     if(user.isEmailVerified()) {
+                        user_preferences = getSharedPreferences("PREFS_NAME", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = user_preferences.edit();
+                        editor.putBoolean("stayConnected", true);
+                        editor.commit();
                         Intent intent = new Intent(LoginActivity.this, com.example.myapplication.Activities.Main.class);
                         startActivity(intent);
                     }
@@ -101,5 +107,21 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    //on start if already logged in - got to next activity
+    @Override
+    public void onStart(){
+        super.onStart();
+        Boolean is_connected = user_preferences.getBoolean("stayConnected", false);
+        if(refAuth.getCurrentUser() != null && is_connected){
+            Intent intent = new Intent(LoginActivity.this, com.example.myapplication.Activities.Main.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+    }
 
 }
