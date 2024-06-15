@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -31,7 +32,7 @@ public class Game extends SurfaceView implements Runnable {
         private ObsList t_TempList = new ObsList();
         private ObsList c_TempList = new ObsList();
         private Paint bgPaint;
-        private Bitmap imgBlock, imgtriangle_right,imgtriangle_right_secret, imgtriangle_left, imgcircle;
+        private Bitmap imgBlock, imgtriangle_right,imgtriangle_right_secret, imgtriangle_left, imgcircle, backgroundBitmap;
         private ArrayList<Bitmap> triangle_bitmap_list = new ArrayList<Bitmap>(3);
         private float x = 0, y = 0, dx = 0, dy = 0;
         private boolean is_holding = false;
@@ -42,6 +43,7 @@ public class Game extends SurfaceView implements Runnable {
             this.height = height;
             holder = getHolder(); //getting surface
             //image creating with drawables
+            backgroundBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.game_background);
             imgBlock = BitmapFactory.decodeResource(getResources(), R.drawable.square);
             imgtriangle_right = BitmapFactory.decodeResource(getResources(), R.drawable.triangle_right);
             imgtriangle_left = BitmapFactory.decodeResource(getResources(), R.drawable.triangle_left);
@@ -56,8 +58,8 @@ public class Game extends SurfaceView implements Runnable {
             circle_List.circle_Loading(imgcircle,width,height,2);
             //painting background
             bgPaint = new Paint();
-            bgPaint.setColor(Color.WHITE);
-            //running thread
+            bgPaint.setColor(Color.BLACK);
+
             thread = new Thread(this);
             thread.start();
         }
@@ -67,6 +69,10 @@ public class Game extends SurfaceView implements Runnable {
                 speed = 3 + (counter/19);
                 canvas = holder.lockCanvas(); // canvas lock + create
                 canvas.drawPaint(bgPaint); // paint bg
+
+                Rect rect = new Rect(0,0,width,height);
+                canvas.drawBitmap(backgroundBitmap,  null, rect, null);
+
                 // drawing objects
                 block.Draw(canvas);
                 //triangles

@@ -33,8 +33,6 @@ public class LoginActivity extends AppCompatActivity {
 
         initViews();
 
-        /*Intent intent = new Intent(this, com.example.myapplication.Activities.Main.class);
-        startActivity(intent);*/
     }
 
     private void initViews() {

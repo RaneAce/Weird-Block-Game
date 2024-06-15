@@ -3,7 +3,7 @@ package com.example.myapplication.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,7 +11,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
+
 import android.widget.TextView;
 
 import com.example.myapplication.R;
@@ -35,6 +35,7 @@ public class Screen extends AppCompatActivity implements Runnable {
         pause = findViewById(R.id.pause);
         timer = findViewById(R.id.timer);
         pause.setBackgroundResource(android.R.drawable.ic_media_pause);
+
 
         //thread starting
         thread = new Thread(this);
@@ -64,7 +65,7 @@ public class Screen extends AppCompatActivity implements Runnable {
         }
     }
 
-         @Override
+    @Override
     public void onWindowFocusChanged(boolean hasFocus) {
              super.onWindowFocusChanged(hasFocus);
              if (hasFocus) {
