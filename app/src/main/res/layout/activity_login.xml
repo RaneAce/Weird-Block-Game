@@ -85,7 +85,7 @@
                 android:gravity="center"
                 android:layout_gravity="center_vertical"
                 android:onClick="forgotpassword"
-                android:text="Forgot Passowrd?" />
+                android:text="Forgot Password?" />
 
             <Space
                 android:layout_width="wrap_content"

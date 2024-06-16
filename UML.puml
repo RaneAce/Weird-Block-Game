@@ -1,0 +1,158 @@
+@startuml
+class circle {
+- int frame_count
+- float k
+}
+
+class Screen {
++ FrameLayout framelayout
+- Button pause
++ TextView timer
++ {static} int counter
+- Thread thread
+~ Game game
+- boolean result
+- Handler handler
+}
+
+class triangle {
+- String direction
+}
+
+class RegisterActivity {
++ TextView already_signed
++ Button register_button
++ EditText editUsername
+- String email
++ User dbuser
++ Date currentDate
++ SimpleDateFormat dateFormat
+~ String date
+}
+
+class ForgotPassword {
++ EditText editEmail
++ Button reset_password
+}
+
+class GameOver {
++ TextView Score_Text
++ ImageButton Return_Button
++ FirebaseUser dbuser
++ Date currentDate
++ SimpleDateFormat format
++ String date
++ String uid
++ User dbuser_score
+}
+
+class Main {
+~ ImageButton Settings
+~ ConstraintLayout layout
+}
+
+class ScoreBoard {
++ ArrayList<String> score_list
++ ArrayList<String> name_list
++ ArrayList<ListViewObject> listView_list
+~ ValueEventListener score_listener
++ ListView list_view
+}
+
+class ObsList {
+- ArrayList<Figure> List
+~ Random random
+}
+
+class User {
+- int score
+- String date
+- String uid
+- String username
+}
+
+class Block {
+- int xmax
+- int xmin
+- int ymax
+- int ymin
+}
+
+abstract class Figure {
++ float x
++ float y
++ Bitmap bitmap
++ String state
+}
+
+class Settings {
+- TextView uid_text
+- String uid
+- FirebaseUser User
++ SharedPreferences user_preferences
+}
+
+class FBref {
++ {static} FirebaseDatabase FBDB
++ {static} DatabaseReference refUser
++ {static} DatabaseReference refHighScore
++ {static} FirebaseAuth refAuth
+}
+
+class Credits {
+}
+class Game {
+- int width
+- Canvas canvas
+- Thread thread
+- boolean isRunning
+- boolean did_collide
+- SurfaceHolder holder
+- Block block
+- ObsList triangle_List
+- ObsList circle_List
+- ObsList t_TempList
+- ObsList c_TempList
+- Paint bgPaint
+- Bitmap imgBlock
+- ArrayList<Bitmap> triangle_bitmap_list
+- float x
+- boolean is_holding
+}
+
+class ListViewObject {
++ String score
++ String name
+}
+
+class LoginActivity {
+- EditText eEmail
+- TextView register
+- Button login_button
++ SharedPreferences user_preferences
+}
+
+class ObjectListAdapter {
+- Context myContext
+- int myResource
+}
+
+
+
+Figure <|-- circle
+Runnable <|.. Screen
+AppCompatActivity <|-- Screen
+Figure <|-- triangle
+AppCompatActivity <|-- RegisterActivity
+AppCompatActivity <|-- ForgotPassword
+AppCompatActivity <|-- GameOver
+AppCompatActivity <|-- Main
+AppCompatActivity <|-- ScoreBoard
+Figure <|-- Block
+AppCompatActivity <|-- Settings
+AppCompatActivity <|-- Credits
+Runnable <|.. Game
+SurfaceView <|-- Game
+AppCompatActivity <|-- LoginActivity
+ArrayAdapter <|-- ObjectListAdapter
+@enduml
