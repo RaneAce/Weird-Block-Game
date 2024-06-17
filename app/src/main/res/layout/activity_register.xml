@@ -49,7 +49,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="E-mail" />
+            android:hint="E-mail - only G-mail can work" />
 
         <Space
             android:layout_width="match_parent"
