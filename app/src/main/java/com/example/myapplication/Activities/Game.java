@@ -66,7 +66,7 @@ public class Game extends SurfaceView implements Runnable {
 
         public void drawCanvas() {
             if (holder.getSurface().isValid()) {
-                speed = 3 + (counter/19);
+                speed = 3 + (counter/10);
                 canvas = holder.lockCanvas(); // canvas lock + create
                 canvas.drawPaint(bgPaint); // paint bg
 
@@ -79,7 +79,7 @@ public class Game extends SurfaceView implements Runnable {
                 for(int i = 0; i < triangle_List.getList().size(); i++){
                     triangle_List.getList().get(i).Draw(canvas);
                     //collision check
-                    if(block.collision_check(triangle_List.getList().get(i))){
+                    if(block.triangle_collision_check(triangle_List.getList().get(i))){
                         did_collide = true;
                     }
                     //moving objects
@@ -120,14 +120,14 @@ public class Game extends SurfaceView implements Runnable {
                 triangle_List.getList().clear();
                 circle_List.getList().clear();
                 //adding objects compared to timer
-                if(counter % 20 == 19){
+                if(counter % 10 == 9){
                     t_TempList.triangle_loading(triangle_bitmap_list,width,height,1);
                     c_TempList.circle_Loading(imgcircle,width,height,1);
                 }
-                if(c_TempList.getList().size() > 2 + counter/19 || c_TempList.getList().size() > 4){
+                if(c_TempList.getList().size() > 2 + counter/9 || c_TempList.getList().size() > 5){
                     c_TempList.getList().remove(c_TempList.getList().size()-1);
                 }
-                if(t_TempList.getList().size() > 3 + counter/19 || t_TempList.getList().size() > 7){
+                if(t_TempList.getList().size() > 3 + counter/9 || t_TempList.getList().size() > 10){
                     t_TempList.getList().remove(t_TempList.getList().size()-1);
                 }
                 for(int j = 0; j < t_TempList.getList().size(); j++){

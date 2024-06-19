@@ -31,6 +31,12 @@ public abstract class Figure {
                 this.y + this.bitmap.getHeight() >= other.getY() &&
                 this.y <= other.getY() + other.getBitmap().getHeight());
     }
+    public Boolean triangle_collision_check(Figure other){
+        return (this.x + this.bitmap.getWidth() >= (float) (other.getX() + other.getBitmap().getWidth()/3) &&
+                this.x <= (float) (other.getX() + (other.getBitmap().getWidth()/3)*2) &&
+                this.y + this.bitmap.getHeight() >= (float) (other.getY() + other.getBitmap().getHeight()/4) &&
+                this.y <= other.getY() + other.getBitmap().getHeight());
+    }
     public void Draw (Canvas canvas){
         canvas.drawBitmap(bitmap, x, y,null);
     }

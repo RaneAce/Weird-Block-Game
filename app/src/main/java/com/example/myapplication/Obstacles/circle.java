@@ -11,8 +11,8 @@ public class circle extends Figure {
 
     public void Movement_circle(int speed, Block block) {
 
-        if(speed > 10){
-            speed = 10;
+        if(speed > 13){
+            speed = 13;
         }
 
        float x = (block.getX()-this.x)/-(Math.abs(block.getX()-this.x))*(-1)*speed;

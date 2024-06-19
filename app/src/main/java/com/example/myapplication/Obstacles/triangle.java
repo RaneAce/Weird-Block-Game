@@ -11,8 +11,8 @@ public class triangle extends Figure {
     }
 
     public void Movement_triangle(int speed){
-        if(speed > 12){
-            speed = 12;
+        if(speed > 17){
+            speed = 17;
         }
         if(this.direction.equals("right")){
             setX(getX()+speed);

@@ -20,7 +20,7 @@ public class Screen extends AppCompatActivity implements Runnable {
 
     public FrameLayout framelayout;
     private Button pause;
-    public TextView timer;
+    public TextView timer, level_of_game;
     public static int counter;
     private Thread thread;
     Game game;
@@ -34,6 +34,7 @@ public class Screen extends AppCompatActivity implements Runnable {
         framelayout = findViewById(R.id.framelayout);
         pause = findViewById(R.id.pause);
         timer = findViewById(R.id.timer);
+        level_of_game = (TextView) findViewById(R.id.level_of_game);
         pause.setBackgroundResource(android.R.drawable.ic_media_pause);
 
 
@@ -50,6 +51,11 @@ public class Screen extends AppCompatActivity implements Runnable {
         @Override
         public void handleMessage(@NonNull Message msg) {
             timer.setText(String.format("%02d:%02d",counter/60,counter%60));
+            if(counter/10 < 14) {
+                level_of_game.setText(String.format("%02d",counter/10));
+            } else{
+                level_of_game.setText("Max");
+            }
         }
     };
 
